@@ -141,7 +141,7 @@
 </div>
 
 <script>
-const EMBEDDED_DATA = {"version":1,"tasks":[],"considerations":[{"id":"seed-bypass","title":"bypassPermissions モードの一時利用","description":"bypassPermissions + deny ルール（フォルダ削除ブロック）の組み合わせで、短時間だけ全確認をスキップして作業を効率化できる。\n\n設定例:\n{\n  \"defaultMode\": \"bypassPermissions\",\n  \"permissions\": {\n    \"deny\": [\"Bash(rm -rf*)\", \"Bash(rmdir*)\", \"Bash(Remove-Item*-Recurse*)\"]\n  }\n}\n\nタイマー機能はないため手動で元に戻す必要がある。スコープはプロジェクト限定（settings.local.json）が安全。初回起動時に確認ダイアログが出る。","tags":["Claude Code","権限設定"],"createdAt":"2026-03-18"}],"notes":"","_updatedAt":"2026-03-21 07:13"};
+const EMBEDDED_DATA = {"version":1,"tasks":[],"considerations":[{"id":"seed-bypass","title":"bypassPermissions モードの一時利用","description":"bypassPermissions + deny ルール（フォルダ削除ブロック）の組み合わせで、短時間だけ全確認をスキップして作業を効率化できる。\n\n設定例:\n{\n  \"defaultMode\": \"bypassPermissions\",\n  \"permissions\": {\n    \"deny\": [\"Bash(rm -rf*)\", \"Bash(rmdir*)\", \"Bash(Remove-Item*-Recurse*)\"]\n  }\n}\n\nタイマー機能はないため手動で元に戻す必要がある。スコープはプロジェクト限定（settings.local.json）が安全。初回起動時に確認ダイアログが出る。","tags":["Claude Code","権限設定"],"createdAt":"2026-03-18"}],"notes":"","_updatedAt":"2026-03-21 07:32"};
 
 const PRIORITY_LABEL = { high: '高', medium: '中', low: '低' };
 const STATUS_GROUP   = { todo: '未着手', inprogress: '進行中', done: '完了' };
