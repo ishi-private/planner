@@ -109,6 +109,21 @@
       background: var(--surface2); border: 1px solid var(--border); border-radius: 4px;
       font-size: 11px; color: var(--muted); padding: 2px 8px;
     }
+
+    /* Knowledge */
+    .knowledge-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 14px; margin-bottom: 10px;
+    }
+    .knowledge-cat {
+      display: inline-block; background: var(--accent-dim); color: var(--accent);
+      border-radius: 4px; font-size: 11px; font-weight: 600; padding: 2px 6px; margin-bottom: 6px;
+    }
+    .knowledge-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+    .knowledge-section { font-size: 11px; font-weight: 600; color: var(--muted); margin-bottom: 2px; }
+    .knowledge-text { font-size: 13px; color: var(--text); line-height: 1.6; white-space: pre-wrap; word-break: break-word; margin-bottom: 8px; }
+    .knowledge-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px; }
+    .knowledge-date { font-size: 11px; color: var(--muted); }
   </style>
 </head>
 <body>
@@ -125,6 +140,7 @@
   <button class="tab-btn active" data-tab="tasks">短期タスク</button>
   <button class="tab-btn" data-tab="considerations">長期検討事項</button>
   <button class="tab-btn" data-tab="notes">メモ</button>
+  <button class="tab-btn" data-tab="knowledge">知見</button>
 </div>
 
 <div id="main">
@@ -138,10 +154,13 @@
   <div id="tab-notes" class="tab-panel">
     <div id="notes-body" class="notes-body"></div>
   </div>
+  <div id="tab-knowledge" class="tab-panel">
+    <div id="knowledge-list"></div>
+  </div>
 </div>
 
 <script>
-const EMBEDDED_DATA = {"version":1,"tasks":[],"considerations":[{"id":"seed-bypass","title":"bypassPermissions モードの一時利用","description":"bypassPermissions + deny ルール（フォルダ削除ブロック）の組み合わせで、短時間だけ全確認をスキップして作業を効率化できる。\n\n設定例:\n{\n  \"defaultMode\": \"bypassPermissions\",\n  \"permissions\": {\n    \"deny\": [\"Bash(rm -rf*)\", \"Bash(rmdir*)\", \"Bash(Remove-Item*-Recurse*)\"]\n  }\n}\n\nタイマー機能はないため手動で元に戻す必要がある。スコープはプロジェクト限定（settings.local.json）が安全。初回起動時に確認ダイアログが出る。","tags":["Claude Code","権限設定"],"createdAt":"2026-03-18"}],"notes":"","_updatedAt":"2026-03-21 07:32"};
+const EMBEDDED_DATA = {"version":1,"tasks":[],"considerations":[{"id":"seed-bypass","title":"bypassPermissions モードの一時利用","description":"bypassPermissions + deny ルール（フォルダ削除ブロック）の組み合わせで、短時間だけ全確認をスキップして作業を効率化できる。\n\n設定例:\n{\n  \"defaultMode\": \"bypassPermissions\",\n  \"permissions\": {\n    \"deny\": [\"Bash(rm -rf*)\", \"Bash(rmdir*)\", \"Bash(Remove-Item*-Recurse*)\"]\n  }\n}\n\nタイマー機能はないため手動で元に戻す必要がある。スコープはプロジェクト限定（settings.local.json）が安全。初回起動時に確認ダイアログが出る。","tags":["Claude Code","権限設定"],"createdAt":"2026-03-18"}],"notes":"","_updatedAt":"2026-03-21 07:54","knowledge":{"version":1,"entries":[{"id":"kn-001","title":"Webデータ取得はネットワーク通信確認を最初に行う","category":"調査手順","project":"Phase 1","symptom":"スクレイピング方針が3回転換した（Playwright+JS変数 → DOM抽出 → API直接呼び出し）","cause":"ブラウザ自動化から試したため、APIが直接叩けることを後から発見","remedy":"Webサイトからデータを取得する調査では、まずネットワーク通信（XHR/fetch）を確認する。APIが存在すればPlaywright等のブラウザ自動化は不要。","tags":["調査","スクレイピング","API"],"createdAt":"2026-03-01"},{"id":"kn-002","title":"Windowsコンソール出力の文字化け対策","category":"Windows環境","project":"Phase 1","symptom":"print()でUTF-8の日本語が文字化けする","cause":"WindowsのコンソールはCP932（Shift-JIS）のため、UTF-8の日本語が化ける","remedy":"print()ではなくファイルに書き出して確認する（ensure_ascii=False + UTF-8で保存）","tags":["Windows","Python","文字コード"],"createdAt":"2026-03-01"},{"id":"kn-003","title":"Windowsでのプロセス操作はPowerShellを使う","category":"Windows環境","project":"Phase 1","symptom":"bashからtaskkillを直接実行すると構文エラーになる","cause":"taskkillはWindowsネイティブコマンドでbashから直接呼べない","remedy":"PowerShellを使う（Stop-Process -Id {PID} -Force）","tags":["Windows","bash","PowerShell","プロセス"],"createdAt":"2026-03-01"},{"id":"kn-004","title":"Claude Codeのバックグラウンドタスクには実行時間制限がある","category":"Windows環境","project":"Phase 1","symptom":"バックグラウンドで起動したローカルサーバーが途中で停止する","cause":"Claude Codeのバックグラウンドタスクには実行時間の制限がある","remedy":"ローカルサーバーの起動はユーザーに別ターミナルでの実行を依頼する","tags":["Claude Code","バックグラウンド","サーバー"],"createdAt":"2026-03-01"},{"id":"kn-005","title":"ファイル移動時はスクリプト内のパス参照も同時に修正する","category":"ファイル管理","project":"Phase 1","symptom":"フォルダ整理後、スクリプト内の相対パスが壊れて4ファイルを別途修正する手戻りが発生","cause":"scripts/ explore/ へのフォルダ整理後、パス参照の更新を忘れた","remedy":"ファイルを移動するときは同時にスクリプト内のパス参照を確認・修正する。パスはos.path.abspath(__file__)を基準にした絶対パスで記述する。","tags":["ファイル管理","Python","パス"],"createdAt":"2026-03-01"},{"id":"kn-006","title":"ルール・意思決定はその場で記録する","category":"作業プロセス","project":"Phase 1","symptom":"調査ルールや作業ルールが後追いで作成され、抜け漏れが生じた","cause":"ルールや意思決定の記録タイミングが後回しになった","remedy":"ルールや意思決定が確定したらその場で記録する。後追いで作ると抜け漏れが生じる。","tags":["作業プロセス","ドキュメント"],"createdAt":"2026-03-01"}]}};
 
 const PRIORITY_LABEL = { high: '高', medium: '中', low: '低' };
 const STATUS_GROUP   = { todo: '未着手', inprogress: '進行中', done: '完了' };
@@ -168,9 +187,10 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 });
 
 function render(data) {
-  const tasks         = data.tasks || [];
+  const tasks          = data.tasks || [];
   const considerations = data.considerations || [];
-  const notes         = data.notes || '';
+  const notes          = data.notes || '';
+  const knowledge      = (data.knowledge && data.knowledge.entries) ? data.knowledge.entries : [];
 
   // Stats
   const c = { todo: 0, inprogress: 0, done: 0, overdue: 0 };
@@ -226,6 +246,23 @@ function render(data) {
   const nb = document.getElementById('notes-body');
   if (notes.trim()) { nb.textContent = notes; nb.classList.add('has-content'); }
   else { nb.textContent = '（メモなし）'; }
+
+  // Knowledge
+  const kList = document.getElementById('knowledge-list');
+  if (knowledge.length === 0) {
+    kList.innerHTML = '<div class="empty"><div class="empty-icon">📚</div>知見はありません</div>';
+  } else {
+    kList.innerHTML = knowledge.map(e => `
+      <div class="knowledge-card">
+        <div><span class="knowledge-cat">${escHtml(e.category||'')}</span>${e.project ? `<span style="font-size:11px;color:var(--muted);margin-left:6px">${escHtml(e.project)}</span>` : ''}</div>
+        <div class="knowledge-title">${escHtml(e.title)}</div>
+        ${e.symptom ? `<div class="knowledge-section">症状</div><div class="knowledge-text">${escHtml(e.symptom)}</div>` : ''}
+        ${e.cause   ? `<div class="knowledge-section">原因</div><div class="knowledge-text">${escHtml(e.cause)}</div>` : ''}
+        ${e.remedy  ? `<div class="knowledge-section">対策</div><div class="knowledge-text">${escHtml(e.remedy)}</div>` : ''}
+        ${e.tags && e.tags.length ? `<div class="knowledge-tags">${e.tags.map(t => `<span class="tag">${escHtml(t)}</span>`).join('')}</div>` : ''}
+        <div class="knowledge-date">登録: ${fmtDate(e.createdAt)}</div>
+      </div>`).join('');
+  }
 }
 
 // Load embedded data
