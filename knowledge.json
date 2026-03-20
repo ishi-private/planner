@@ -57,6 +57,17 @@
       "createdAt": "2026-03-01"
     },
     {
+      "id": "kn-007",
+      "title": "PowerShellの$PROFILEパスはOneDriveリダイレクトに注意",
+      "category": "Windows環境",
+      "project": "環境構築",
+      "symptom": "C:\\Users\\ishi3\\Documents\\WindowsPowerShell\\ にプロファイルを作成したが読み込まれなかった",
+      "cause": "ドキュメントフォルダがOneDriveにリダイレクトされており、$PROFILEの実際のパスはC:\\Users\\ishi3\\OneDrive\\ドキュメント\\WindowsPowerShell\\ になる",
+      "remedy": "プロファイルを作成する前に $PROFILE の値を確認する。このPCでの正しいパス: C:\\Users\\ishi3\\OneDrive\\ドキュメント\\WindowsPowerShell\\Microsoft.PowerShell_profile.ps1",
+      "tags": ["Windows", "PowerShell", "OneDrive", "プロファイル"],
+      "createdAt": "2026-03-21"
+    },
+    {
       "id": "kn-006",
       "title": "ルール・意思決定はその場で記録する",
       "category": "作業プロセス",
