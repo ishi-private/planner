@@ -26,6 +26,15 @@
       "name": "Planner",
       "path": "planner.html",
       "description": "タスク・検討事項管理"
+    },
+    {
+      "id": "mn0fd8r9egyt",
+      "name": "Shadowverse WB",
+      "path": "",
+      "url": "http://localhost:8000",
+      "startCmd": "python server.py",
+      "dir": "F:\\shadowverse-wb",
+      "description": "シャドウバースWBツール"
     }
   ]
 }
