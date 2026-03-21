@@ -6,10 +6,26 @@
       "id": "seed-bypass",
       "title": "bypassPermissions モードの一時利用",
       "description": "bypassPermissions + deny ルール（フォルダ削除ブロック）の組み合わせで、短時間だけ全確認をスキップして作業を効率化できる。\n\n設定例:\n{\n  \"defaultMode\": \"bypassPermissions\",\n  \"permissions\": {\n    \"deny\": [\"Bash(rm -rf*)\", \"Bash(rmdir*)\", \"Bash(Remove-Item*-Recurse*)\"]\n  }\n}\n\nタイマー機能はないため手動で元に戻す必要がある。スコープはプロジェクト限定（settings.local.json）が安全。初回起動時に確認ダイアログが出る。",
-      "tags": ["Claude Code", "権限設定"],
+      "tags": [
+        "Claude Code",
+        "権限設定"
+      ],
       "createdAt": "2026-03-18"
     }
   ],
-  "notes": ""
+  "notes": "",
+  "projects": [
+    {
+      "id": "mn0bttyf5sim",
+      "name": "Session Viewer",
+      "path": "../session-viewer/session-viewer.html",
+      "description": "セッション履歴ビューア"
+    },
+    {
+      "id": "mn0bttyftn05",
+      "name": "Planner",
+      "path": "planner.html",
+      "description": "タスク・検討事項管理"
+    }
+  ]
 }
-
