@@ -23,7 +23,7 @@
       "id": "swwb-custom-eval",
       "title": "[shadowverse-wb] 独自評価（custom フィールド）の運用方法を設計する",
       "priority": "low",
-      "status": "todo",
+      "status": "done",
       "dueDate": "",
       "createdAt": "2026-03-22",
       "source": "Shadowverse WB"
@@ -32,7 +32,7 @@
       "id": "swwb-phase3-kickoff",
       "title": "[shadowverse-wb] Phase 3（最適デッキ構築・戦略分析）の開始前確認",
       "priority": "low",
-      "status": "todo",
+      "status": "done",
       "dueDate": "",
       "createdAt": "2026-03-22",
       "source": "Shadowverse WB"
@@ -51,7 +51,7 @@
       "id": "mn20gco29qyk",
       "title": "Phase 3（最適デッキ構築・戦略分析）の開始前確認",
       "priority": "low",
-      "status": "todo",
+      "status": "done",
       "dueDate": "",
       "notes": "Phase 2（一般的なデッキ構築の再現）がほぼ完了しました。\nPhase 3「最適デッキ構築・戦略分析」を開始するにあたり、以下の点を確認させてください。\n\n1. 「最適なデッキ」の定義\n   - 勝率最大化？ 特定の対面に強い構築？ コスト効率重視？\n   - 評価指標をどう定めるか？\n\n2. 分析のアプローチ\n   - 既存の SS/S デッキを比較・分析するだけ？\n   - カードの組み合わせを数値的に評価して最適構成を導出する？\n   - 対戦シミュレーションまで視野に入れる？\n\n3. 成果物のイメージ\n   - 「このデッキを推奨する理由」を Web ページで表示？\n   - 最適構成候補の一覧を出力？\n   - deck_detail.html に分析結果を追加表示？\n\n確認後に実装方針を策定します。",
       "createdAt": "2026-03-22",
