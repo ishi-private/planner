@@ -1,6 +1,43 @@
 ﻿{
   "version": 1,
-  "tasks": [],
+  "tasks": [
+    {
+      "id": "swwb-evo-download",
+      "title": "[shadowverse-wb] 進化後カード画像のダウンロード（! python scripts/fetch_card_images.py）",
+      "priority": "low",
+      "status": "todo",
+      "dueDate": "",
+      "createdAt": "2026-03-22",
+      "source": "Shadowverse WB"
+    },
+    {
+      "id": "swwb-tribes-mapping",
+      "title": "[shadowverse-wb] tribes フィールドの種族名マッピング調査",
+      "priority": "low",
+      "status": "todo",
+      "dueDate": "",
+      "createdAt": "2026-03-22",
+      "source": "Shadowverse WB"
+    },
+    {
+      "id": "swwb-custom-eval",
+      "title": "[shadowverse-wb] 独自評価（custom フィールド）の運用方法を設計する",
+      "priority": "low",
+      "status": "todo",
+      "dueDate": "",
+      "createdAt": "2026-03-22",
+      "source": "Shadowverse WB"
+    },
+    {
+      "id": "swwb-phase3-kickoff",
+      "title": "[shadowverse-wb] Phase 3（最適デッキ構築・戦略分析）の開始前確認",
+      "priority": "low",
+      "status": "todo",
+      "dueDate": "",
+      "createdAt": "2026-03-22",
+      "source": "Shadowverse WB"
+    }
+  ],
   "considerations": [
     {
       "id": "seed-bypass",
