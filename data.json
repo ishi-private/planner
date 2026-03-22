@@ -36,6 +36,16 @@
       "dueDate": "",
       "createdAt": "2026-03-22",
       "source": "Shadowverse WB"
+    },
+    {
+      "id": "mn200s5z13bk",
+      "title": "独自評価（custom フィールド）の運用方法を確認したい",
+      "priority": "low",
+      "status": "todo",
+      "dueDate": "",
+      "notes": "現在 data/decks/{id}.json の evaluation.custom フィールドは null のままです。\n独自評価を運用するにあたり、以下の点を確認させてください。\n\n1. 評価の内容・形式\n   - スコア数値（例: 85点）？\n   - テキストコメント（例: 「序盤が安定しない」）？\n   - ラベル／段階評価（例: S/A/B/C）？\n   - 複数項目の組み合わせ？\n\n2. 更新のタイミング・方法\n   - 手動で JSON を直接編集する？\n   - deck_detail.html 上に編集 UI を設ける？\n   - 別途スクリプトで一括更新する？\n\n3. 表示のイメージ\n   - game8 評価（Tier・デッキレンジ・必要エーテル）と並べて表示？\n   - 別セクションとして独立表示？\n\nご回答いただければ実装方針を確定します。",
+      "createdAt": "2026-03-22",
+      "source": "Shadowverse WB"
     }
   ],
   "considerations": [
