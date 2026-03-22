@@ -5,7 +5,7 @@
       "id": "swwb-evo-download",
       "title": "[shadowverse-wb] 進化後カード画像のダウンロード（! python scripts/fetch_card_images.py）",
       "priority": "low",
-      "status": "todo",
+      "status": "done",
       "dueDate": "",
       "createdAt": "2026-03-22",
       "source": "Shadowverse WB"
