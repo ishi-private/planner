@@ -1,0 +1,21 @@
+﻿{
+    "version":  1,
+    "entries":  [
+                    {
+                        "id":  "ln-001",
+                        "title":  "Claude Code ツール群のアーキテクチャ（preview_start / Chrome ツール / MCP）",
+                        "category":  "Claude Code",
+                        "summary":  "preview_start はローカルプロセスを直接 spawn して管理する。Chrome ツールは拡張機能経由のブラウザ操作のみ。MCP はこれらを Claude に繋ぐ標準規格。",
+                        "detail":  "【preview_start】\n.claude/launch.json を読んで python 等のプロセスを子プロセスとして起動・監視する。stdout/stderr は preview_logs で取得可能。Claude Code が動くPC上で直接実行される。\n\n【mcp__Claude_in_Chrome__*】\nChrome 拡張機能 → WebSocket → Chrome DevTools Protocol (CDP) でブラウザを操作する。すでに開いているブラウザの操作のみが可能で、OSレベルのプロセス起動はできない（拡張機能のサンドボックス制約）。\n\n【なぜ Chrome ツールからサーバー起動できないか】\nChrome 拡張機能はサンドボックス内で動くため OS レベルでプロセスを起動する権限がない。\n\n【MCP 全体】\nModel Context Protocol = Claude にツールを追加するための標準規格。mcp__XXX__* の XXX 部分が各 MCP サーバー名。Claude 本体はクラウド上にあり、ローカルで動く MCP サーバーが橋渡しする。",
+                        "source":  "会話 2026-03-28",
+                        "tags":  [
+                                     "Claude Code",
+                                     "MCP",
+                                     "preview_start",
+                                     "Chrome",
+                                     "アーキテクチャ"
+                                 ],
+                        "createdAt":  "2026-03-28"
+                    }
+                ]
+}
