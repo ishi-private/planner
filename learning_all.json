@@ -16,6 +16,22 @@
                                      "アーキテクチャ"
                                  ],
                         "createdAt":  "2026-03-28"
+                    },
+                    {
+                        "id":  "ln-002",
+                        "title":  "UserPromptSubmit フックの正しい実装パターン",
+                        "category":  "Claude Code",
+                        "summary":  "UserPromptSubmit フックは exit 0 + stdout でコンテキスト注入。exit 2 はブロック扱い。日本語出力には OutputEncoding 設定が必要。settings.json は即時反映。",
+                        "detail":  "【exit code の挙動】\n- exit 0: メッセージを通過させる。stdout があれば Claude のコンテキストに注入される。\n- exit 1: ブロック。ユーザーにエラー表示。\n- exit 2: ブロック扱い（UserPromptSubmit では「コンテキスト注入」にならない）。\n※ PreToolUse と異なり UserPromptSubmit では exit 2 = ブロック。\n\n【日本語文字化け対策】\n-NoProfile フラグを使うと PowerShell プロファイルの UTF-8 設定が無効になる。\nスクリプト冒頭に以下を追加して解決：\n[Console]::OutputEncoding = [System.Text.Encoding]::UTF8\n\n【settings.json の反映タイミング】\n変更は即時反映される。セッション再起動は不要。\n\n【フックスクリプトに日本語を含む場合】\nsettings.json の command に日本語をインラインで書かない。\n外部 .ps1 ファイルを Python (utf-8-sig) で作成し -File で参照する。\n\n【stdin の形式】\nユーザーメッセージは JSON 形式で stdin に渡される：\n{\"prompt\": \"ユーザーのメッセージ\", ...}\ntry { $msg = ($rawIn | ConvertFrom-Json).prompt } catch { $msg = $rawIn }\nのように JSON パースしてから使う。\n\n【安全策】\nスクリプト冒頭に trap { exit 0 } を入れておくと、\n予期しない例外発生時もブロックにならずパススルーされる。",
+                        "source":  "会話 2026-03-28",
+                        "tags":  [
+                                     "Claude Code",
+                                     "hooks",
+                                     "UserPromptSubmit",
+                                     "PowerShell",
+                                     "エンコード"
+                                 ],
+                        "createdAt":  "2026-03-28"
                     }
                 ]
 }
