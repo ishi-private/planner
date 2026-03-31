@@ -32,6 +32,24 @@
                                      "エンコード"
                                  ],
                         "createdAt":  "2026-03-28"
+                    },
+                    {
+                        "id":  "ln-003",
+                        "title":  "MCP設定ファイル(.mcp.json)の配置ルールとCWD外書き込み防止hookの実装",
+                        "category":  "Claude Code",
+                        "summary":  "`claude mcp add` はセッションCWDに .mcp.json を作成するため、F:\\ 全体をCWDとして開いた状態で実行すると全PJに適用されてしまう。サブPJ専用MCPはそのディレクトリをCWDとして開いた状態でインストールする必要がある。hookのstdin JSONに cwd フィールドがあり、CWD外書き込みの動的検出に利用できる。",
+                        "detail":  "【.mcp.json の配置ルール】\n- `claude mcp add` はセッションCWD直下に .mcp.json を作成・更新する\n- F:\\ でClaude Codeを開いた状態でMCP追加 → F:\\.mcp.json（全PJに適用）\n- F:\\STS2MCP でClaude Codeを開いた状態でMCP追加 → F:\\STS2MCP\\.mcp.json（そのPJのみ）\n- 誤配置した場合はファイルを移動すればよい\n\n【hookのstdin JSONに cwd フィールドがある】\n- PreToolUse / UserPromptSubmit のstdin JSONには \"cwd\" フィールドが含まれる\n- hookスクリプト内で $inp.cwd としてセッションのCWDを動的取得できる\n- これを利用してCWD外への書き込みを検出可能（パス比較）\n\n【CWD外書き込み防止hookの実装方針】\n- Edit/Write: warn-froot-write.ps1 → $inp.cwd と file_path を比較\n- Bash: warn-bash-outside-cwd.ps1 → `claude mcp add` / リダイレクト `\u003e` / cp・mv・tee の宛先を検出\n- bash形式の /f/foo スタイルパスは F:\\foo に変換して比較する必要がある\n- bypass モード中はスキップ（他hookと統一）\n\n【C:\\Users\\ishi3\\.claude\\hooks\\ への書き込みの落とし穴】\n- hookファイル自体がF:\\外（C:\\ 配下）にあるため、CWD外書き込みhookが自分自身をブロックする\n- Write/EditツールでC:\\ 配下を編集しようとすると循環ブロックが発生する\n- 対処：Python の open() か PowerShell の Set-Content で直接書き込む",
+                        "source":  "会話 2026-03-31",
+                        "tags":  [
+                                     "Claude Code",
+                                     "MCP",
+                                     "hooks",
+                                     "PreToolUse",
+                                     ".mcp.json",
+                                     "PowerShell",
+                                     "cwd"
+                                 ],
+                        "createdAt":  "2026-04-01"
                     }
                 ]
 }
