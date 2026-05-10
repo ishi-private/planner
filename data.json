@@ -139,7 +139,7 @@
       "path": "",
       "url": "http://localhost:3000",
       "startCmd": "bash dev.sh",
-      "launchUrl": "wtl:F:/spire-codex",
+      "launchUrl": "spire-codex:",
       "stopCmd": "@(8000,3000) | ForEach-Object { Get-NetTCPConnection -LocalPort $_ -State Listen -EA SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force } }",
       "dir": "F:\\spire-codex",
       "description": "STS2データリファレンスサイト（FastAPI :8000 + Next.js :3000）"
@@ -150,7 +150,7 @@
       "path": "",
       "url": "http://localhost:8001",
       "startCmd": "start.ps1",
-      "launchUrl": "wtl:F:/anime/anime-db",
+      "launchUrl": "anime-db:",
       "stopCmd": "Get-NetTCPConnection -LocalPort 8001 -State Listen -EA SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }",
       "dir": "F:\\anime\\anime-db",
       "description": "アニメタグDB（FastAPI :8001）"
