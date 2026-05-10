@@ -90,7 +90,7 @@
       "createdAt": "2026-03-18"
     }
   ],
-  "notes": "",
+  "notes": "plannerの#section-headerにanime-launcher.htmlへのリンクを付けたボタンが以前ありましたが消えています。同様に変更が戻っている箇所があるかセッション履歴をもとに洗い出してほしいです。ボタン名は\"アニメ\"です。\nまた、以下のnotionへのリンクを付けたボタンも新たに用意します。\nhttps://www.notion.so/34e9bd374fd9809dbe05e8d28e3151c4",
   "projects": [
     {
       "id": "mn0bttyf5sim",
@@ -105,13 +105,61 @@
       "description": "タスク・検討事項管理"
     },
     {
+      "id": "mozp7maint",
+      "name": "Maintenance",
+      "path": "maintenance.html",
+      "description": "サーバー起動・データ更新ハブ"
+    },
+    {
       "id": "mn0fd8r9egyt",
       "name": "Shadowverse WB",
       "path": "",
       "url": "http://localhost:8000",
       "startCmd": "python server.py",
+      "launchUrl": "wtl:F:/shadowverse-wb",
+      "stopCmd": "Get-NetTCPConnection -LocalPort 8000 -State Listen -EA SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }",
       "dir": "F:\\shadowverse-wb",
       "description": "シャドウバースWBツール"
+    },
+    {
+      "id": "mozp6y9k",
+      "name": "Slay the Spire 2",
+      "path": "../../slay-the-spire2/viewer/index.html",
+      "url": "",
+      "startCmd": "",
+      "dir": "F:\\slay-the-spire2",
+      "description": "STS2 MOD開発（AutoPlay・QueuePreview・StarterRare・StrategyView）"
+    },
+    {
+      "id": "mozp6yfk",
+      "name": "STS2MCP",
+      "path": "",
+      "url": "",
+      "startCmd": "",
+      "dir": "F:\\STS2MCP",
+      "description": "STS2向けMCPサーバー（Claude自動プレイBot）"
+    },
+    {
+      "id": "mozp6yfz",
+      "name": "Spire Codex",
+      "path": "",
+      "url": "http://localhost:3000",
+      "startCmd": "bash dev.sh",
+      "launchUrl": "wtl:F:/spire-codex",
+      "stopCmd": "@(8000,3000) | ForEach-Object { Get-NetTCPConnection -LocalPort $_ -State Listen -EA SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force } }",
+      "dir": "F:\\spire-codex",
+      "description": "STS2データリファレンスサイト（FastAPI :8000 + Next.js :3000）"
+    },
+    {
+      "id": "mozp6ygf",
+      "name": "Anime DB",
+      "path": "",
+      "url": "http://localhost:8001",
+      "startCmd": "start.ps1",
+      "launchUrl": "wtl:F:/anime/anime-db",
+      "stopCmd": "Get-NetTCPConnection -LocalPort 8001 -State Listen -EA SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }",
+      "dir": "F:\\anime\\anime-db",
+      "description": "アニメタグDB（FastAPI :8001）"
     }
   ]
 }

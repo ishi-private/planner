@@ -109,6 +109,23 @@
                     },
                     {
                         "id":  "kn-008",
+                        "title":  "bypassセッション終了時に未追跡ディレクトリが消える",
+                        "category":  "Claude Code hooks",
+                        "project":  "F:\\ 運用",
+                        "symptom":  "bypassモードで作業したセッション終了後、F:\\anime/ や F:\\Notion/ などの未追跡ディレクトリの中身が丸ごと消える",
+                        "cause":  "create-bypass-pr.ps1 が『git add -A → commit → git checkout master』を実行する。git add -A で未追跡ディレクトリも全てコミットされ、git checkout master 時に『bypassブランチにあってmasterにない』ファイルがgitに削除される",
+                        "remedy":  "①create-bypass-pr.ps1 の git add -A を git add -u + git add .claude/ に変更（実施済み）②消えたファイルは bypass/YYYYMMDD-HHmm ブランチに残っているため git checkout bypass/... -- \u003cdir\u003e/ で復元可能 ③保護したいディレクトリは .gitignore に追加（anime/, Notion/ 追加済み）",
+                        "tags":  [
+                                     "bypass",
+                                     "git",
+                                     "hooks",
+                                     "データ消失",
+                                     "create-bypass-pr"
+                                 ],
+                        "createdAt":  "2026-05-10"
+                    },
+                    {
+                        "id":  "kn-008",
                         "title":  "ユーザーが明示したパスと異なる場所を検索してしまう（文脈の引きずり）",
                         "category":  "作業プロセス",
                         "project":  "planner",
